@@ -3,6 +3,8 @@
 import Image from "next/image";
 import { Typography } from "@material-tailwind/react";
 import { motion } from "framer-motion";
+import type { SVGProps } from "react";
+
 import {
   MagnifyingGlassIcon,
   ChartBarIcon,
@@ -12,7 +14,15 @@ import {
   ChartPieIcon,
 } from "@heroicons/react/24/solid";
 
-const SERVICES = [
+// ✅ TYPE
+type ServiceCardProps = {
+  icon: (props: SVGProps<SVGSVGElement>) => JSX.Element;
+  title: string;
+  desc: string;
+};
+
+// ✅ SERVICES DATA
+const SERVICES: ServiceCardProps[] = [
   {
     icon: MagnifyingGlassIcon,
     title: "SEO (Search Engine Optimization)",
@@ -45,8 +55,8 @@ const SERVICES = [
   },
 ];
 
-// ✅ ADD CERTIFICATE IMAGES
-const certificates = [
+// ✅ CERTIFICATES
+const certificates: string[] = [
   "/logos/1.png",
   "/logos/2.png",
   "/logos/3.png",
@@ -55,7 +65,8 @@ const certificates = [
   "/logos/6.png",
 ];
 
-function ServiceCard({ icon: Icon, title, desc }) {
+// ✅ SERVICE CARD COMPONENT
+function ServiceCard({ icon: Icon, title, desc }: ServiceCardProps) {
   return (
     <div className="group p-6 rounded-2xl bg-white shadow-sm border border-gray-100 hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
       <div className="w-12 h-12 flex items-center justify-center rounded-xl bg-blue-50 text-blue-600 group-hover:scale-110 transition">
@@ -73,11 +84,12 @@ function ServiceCard({ icon: Icon, title, desc }) {
   );
 }
 
+// ✅ MAIN COMPONENT
 export function Skills() {
   return (
     <section id="services" className="px-8 py-24 bg-gray-50">
 
-      {/* 🔥 CERTIFIED SECTION (NEW TOP) */}
+      {/* 🔥 CERTIFIED SECTION */}
       <div className="container mx-auto text-center mb-16">
 
         <motion.h2
@@ -115,7 +127,10 @@ export function Skills() {
       {/* HEADER */}
       <div className="container mx-auto text-center mb-14">
 
-        <Typography color="blue-gray" className="mb-2 font-bold uppercase tracking-widest">
+        <Typography
+          color="blue-gray"
+          className="mb-2 font-bold uppercase tracking-widest"
+        >
           Our Services
         </Typography>
 
@@ -141,11 +156,9 @@ export function Skills() {
 
       {/* GRID */}
       <div className="container mx-auto grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-
         {SERVICES.map((item, idx) => (
           <ServiceCard key={idx} {...item} />
         ))}
-
       </div>
 
     </section>

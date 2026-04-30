@@ -3,7 +3,6 @@
 import Image from "next/image";
 import { Typography } from "@material-tailwind/react";
 import { motion } from "framer-motion";
-import type { SVGProps } from "react";
 
 import {
   MagnifyingGlassIcon,
@@ -14,9 +13,9 @@ import {
   ChartPieIcon,
 } from "@heroicons/react/24/solid";
 
-// ✅ TYPE
+// ✅ TYPE (FIXED)
 type ServiceCardProps = {
-  icon: (props: SVGProps<SVGSVGElement>) => JSX.Element;
+  icon: React.ElementType;
   title: string;
   desc: string;
 };
@@ -65,7 +64,7 @@ const certificates: string[] = [
   "/logos/6.png",
 ];
 
-// ✅ SERVICE CARD COMPONENT
+// ✅ SERVICE CARD
 function ServiceCard({ icon: Icon, title, desc }: ServiceCardProps) {
   return (
     <div className="group p-6 rounded-2xl bg-white shadow-sm border border-gray-100 hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
